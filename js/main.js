@@ -147,13 +147,7 @@ function initMobileMenu() {
             }
         });
 
-        // Close menu when clicking on other links (not Shop)
-        const menuLinks = mobileMenu.querySelectorAll('.mobile-menu-link:not(.mobile-menu-shop-link)');
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                closeMenu();
-            });
-        });
+        // Close menu when clicking on other links (not Shop) - handled in event delegation above
 
         // Sync currency display between navbar and mobile menu
         const currencyBtn = document.getElementById('currency-btn');
