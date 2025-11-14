@@ -128,28 +128,24 @@ function initMobileMenu() {
         }
 
         // Shop dropdown toggle - use event delegation for reliability
-        const shopWrapper = mobileMenu.querySelector('.mobile-menu-link-wrapper');
-        
-        if (shopWrapper) {
-            const shopLink = shopWrapper.querySelector('.mobile-menu-shop-link');
-            const shopDropdown = shopWrapper.querySelector('.mobile-menu-shop-dropdown');
+        // Use event delegation on the mobile menu to handle dynamically loaded content
+        mobileMenu.addEventListener('click', (e) => {
+            const shopLink = e.target.closest('.mobile-menu-shop-link');
+            const shopWrapper = e.target.closest('.mobile-menu-link-wrapper');
             
-            if (shopLink && shopDropdown) {
-                shopLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    shopWrapper.classList.toggle('active');
-                });
-
-                // Close menu when clicking on dropdown links
-                const dropdownLinks = shopDropdown.querySelectorAll('.mobile-menu-dropdown-link');
-                dropdownLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        closeMenu();
-                    });
-                });
+            if (shopLink && shopWrapper) {
+                e.preventDefault();
+                e.stopPropagation();
+                shopWrapper.classList.toggle('active');
+                return;
             }
-        }
+            
+            // Close menu when clicking on dropdown links
+            const dropdownLink = e.target.closest('.mobile-menu-dropdown-link');
+            if (dropdownLink) {
+                closeMenu();
+            }
+        });
 
         // Close menu when clicking on other links (not Shop)
         const menuLinks = mobileMenu.querySelectorAll('.mobile-menu-link:not(.mobile-menu-shop-link)');
