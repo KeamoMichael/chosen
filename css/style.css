@@ -399,6 +399,16 @@ body {
     .currency-flag {
         font-size: 16px;
     }
+
+    /* Hide mobile menu header when menu is closed */
+    .mobile-menu:not(.active) .mobile-menu-header {
+        display: none;
+    }
+
+    /* Mobile menu currency selector - no dropdown on mobile menu */
+    .mobile-currency .currency-dropdown {
+        display: none !important;
+    }
     .nav-dropdown {
         position: absolute;
         top: 100%;
