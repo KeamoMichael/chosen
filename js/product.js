@@ -1,12 +1,17 @@
-// Image Gallery with Dots Navigation
+// Image Gallery with Dots Navigation and Touch Swipe
 function initImageGallery() {
     const images = document.querySelectorAll('.gallery-image');
     const dots = document.querySelectorAll('.gallery-dot');
+    const galleryFrame = document.querySelector('.product-gallery-frame');
     let currentIndex = 0;
     
     if (images.length === 0 || dots.length === 0) return;
     
     function showImage(index) {
+        // Ensure index is within bounds
+        if (index < 0) index = images.length - 1;
+        if (index >= images.length) index = 0;
+        
         // Remove active class from all images and dots
         images.forEach(img => img.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
@@ -22,12 +27,55 @@ function initImageGallery() {
         currentIndex = index;
     }
     
+    function nextImage() {
+        showImage(currentIndex + 1);
+    }
+    
+    function prevImage() {
+        showImage(currentIndex - 1);
+    }
+    
     // Add click handlers to dots
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             showImage(index);
         });
     });
+    
+    // Touch/Swipe functionality for mobile
+    if (galleryFrame) {
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+        const minSwipeDistance = 50; // Minimum distance for a swipe
+        
+        galleryFrame.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+        
+        galleryFrame.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+            const absDeltaX = Math.abs(deltaX);
+            const absDeltaY = Math.abs(deltaY);
+            
+            // Only process swipe if horizontal movement is greater than vertical (horizontal swipe)
+            if (absDeltaX > absDeltaY && absDeltaX > minSwipeDistance) {
+                if (deltaX > 0) {
+                    // Swipe right - go to previous image
+                    prevImage();
+                } else {
+                    // Swipe left - go to next image
+                    nextImage();
+                }
+            }
+        }, { passive: true });
+    }
     
     // Initialize with first image
     showImage(0);
