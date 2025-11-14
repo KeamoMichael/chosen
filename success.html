@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Chosen</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .success-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 40px;
+            text-align: center;
+        }
+        
+        .success-content {
+            max-width: 600px;
+        }
+        
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 30px;
+        }
+        
+        .success-title {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            font-family: 'ClashGrotesk', sans-serif;
+        }
+        
+        .success-message {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .success-btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s ease;
+            font-family: 'ClashGrotesk', sans-serif;
+        }
+        
+        .success-btn:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-left">
+                <a href="index.html" class="nav-link">Shop</a>
+                <a href="#" class="nav-link">Brand</a>
+                <a href="#" class="nav-link">Journal</a>
+                <a href="#" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="nav-logo">Chosen</a>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">Account</a>
+                <a href="index.html" class="nav-link cart-link">
+                    Cart
+                    <span class="cart-count">(0)</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Success Page -->
+    <main class="success-page">
+        <div class="success-content">
+            <div class="success-icon">✓</div>
+            <h1 class="success-title">Payment Successful!</h1>
+            <p class="success-message">
+                Thank you for your purchase. Your order has been confirmed and you will receive an email confirmation shortly.
+            </p>
+            <a href="index.html" class="success-btn">Continue Shopping</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>By Flowit Supply</p>
+                <p>©2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script src="js/success.js"></script>
+</body>
+</html>
+

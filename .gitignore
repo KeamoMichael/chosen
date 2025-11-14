@@ -42,3 +42,9 @@ build/
 *.temp
 .cache/
 
+# Vercel
+.vercel
+
+# Windows artifacts
+nul
+

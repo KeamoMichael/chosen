@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Chosen</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .checkout-page {
+            min-height: 100vh;
+            padding: 100px 40px 80px;
+            background: #fff;
+        }
+        
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .checkout-section {
+            background: #fff;
+        }
+        
+        .checkout-title {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 40px;
+            font-family: 'ClashGrotesk', sans-serif;
+        }
+        
+        .checkout-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-label {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #000;
+            font-family: 'ClashGrotesk', sans-serif;
+        }
+        
+        .form-input {
+            padding: 12px 16px;
+            border: 1px solid #e5e5e5;
+            font-size: 14px;
+            font-family: 'ClashGrotesk', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #000;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .order-summary {
+            background: #f9f9f9;
+            padding: 30px;
+            border: 1px solid #e5e5e5;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .order-summary-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            font-family: 'ClashGrotesk', sans-serif;
+        }
+        
+        .order-items {
+            margin-bottom: 30px;
+        }
+        
+        .order-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .order-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+        }
+        
+        .order-item-details {
+            flex: 1;
+        }
+        
+        .order-item-name {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            font-family: 'ClashGrotesk', sans-serif;
+        }
+        
+        .order-item-size {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .order-item-price {
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'ClashGrotesk', sans-serif;
+        }
+        
+        .order-totals {
+            border-top: 1px solid #e5e5e5;
+            padding-top: 20px;
+        }
+        
+        .order-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .order-total-row.final {
+            font-size: 18px;
+            font-weight: 500;
+            padding-top: 15px;
+            border-top: 1px solid #e5e5e5;
+            margin-top: 15px;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 16px 30px;
+            background: #000;
+            color: #fff;
+            border: none;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-family: 'ClashGrotesk', sans-serif;
+            margin-top: 20px;
+        }
+        
+        .checkout-btn:hover {
+            background: #333;
+        }
+        
+        .checkout-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-summary {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-left">
+                <a href="index.html" class="nav-link">Shop</a>
+                <a href="#" class="nav-link">Brand</a>
+                <a href="#" class="nav-link">Journal</a>
+                <a href="#" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="nav-logo">Chosen</a>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">Account</a>
+                <a href="index.html" class="nav-link cart-link">
+                    Cart
+                    <span class="cart-count">(0)</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Checkout Page -->
+    <main class="checkout-page">
+        <div class="checkout-container">
+            <!-- Checkout Form -->
+            <div class="checkout-section">
+                <h1 class="checkout-title">Checkout</h1>
+                <form class="checkout-form" id="checkout-form">
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="name">Full Name</label>
+                        <input type="text" id="name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="address">Address</label>
+                        <input type="text" id="address" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="city">City</label>
+                            <input type="text" id="city" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="postal">Postal Code</label>
+                            <input type="text" id="postal" class="form-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="country">Country</label>
+                        <input type="text" id="country" class="form-input" required>
+                    </div>
+                    
+                    <button type="submit" class="checkout-btn" id="checkout-submit-btn">
+                        Proceed to Payment
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Order Summary -->
+            <div class="checkout-section">
+                <div class="order-summary">
+                    <h2 class="order-summary-title">Order Summary</h2>
+                    <div class="order-items" id="order-items">
+                        <div class="loading">Loading order...</div>
+                    </div>
+                    <div class="order-totals">
+                        <div class="order-total-row">
+                            <span>Subtotal</span>
+                            <span id="order-subtotal">$0.00</span>
+                        </div>
+                        <div class="order-total-row">
+                            <span>Shipping</span>
+                            <span id="order-shipping">Calculated at checkout</span>
+                        </div>
+                        <div class="order-total-row final">
+                            <span>Total</span>
+                            <span id="order-total">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>By Flowit Supply</p>
+                <p>©2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load Paystack.js (optional - for inline payments) -->
+    <!-- <script src="https://js.paystack.co/v1/inline.js"></script> -->
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/currency.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>
+

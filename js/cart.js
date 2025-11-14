@@ -464,8 +464,8 @@ function initCartSidebar() {
                 alert('Your cart is empty');
                 return;
             }
-            // For now, just show an alert. Replace with actual checkout logic
-            alert('Checkout functionality will be implemented here');
+            // Redirect to checkout page
+            window.location.href = 'checkout.html';
         });
     }
     
