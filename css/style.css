@@ -382,7 +382,7 @@ body {
 }
 
 .mobile-menu-link-wrapper.active .mobile-menu-chevron svg {
-    transform: rotate(90deg);
+    transform: rotate(180deg);
 }
 
 .mobile-menu-shop-dropdown {
