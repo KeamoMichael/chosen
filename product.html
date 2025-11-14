@@ -76,10 +76,20 @@
             <div class="mobile-menu-content">
                 <a href="index.html" class="mobile-menu-link">Home</a>
                 <div class="mobile-menu-link-wrapper">
-                    <a href="index.html" class="mobile-menu-link">
+                    <a href="index.html" class="mobile-menu-link mobile-menu-shop-link" id="mobile-shop-link">
                         Shop
-                        <span class="mobile-menu-chevron">▼</span>
+                        <span class="mobile-menu-chevron" id="mobile-shop-chevron">
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
                     </a>
+                    <div class="mobile-menu-shop-dropdown" id="mobile-shop-dropdown">
+                        <a href="index.html?category=all" class="mobile-menu-dropdown-link">All Products</a>
+                        <a href="index.html?category=tops" class="mobile-menu-dropdown-link">Tops</a>
+                        <a href="index.html?category=bottoms" class="mobile-menu-dropdown-link">Bottoms</a>
+                        <a href="index.html?category=new" class="mobile-menu-dropdown-link">New Arrivals</a>
+                    </div>
                 </div>
                 <a href="#" class="mobile-menu-link">Brand</a>
                 <a href="#" class="mobile-menu-link">Journal</a>

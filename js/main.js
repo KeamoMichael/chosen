@@ -127,8 +127,28 @@ function initMobileMenu() {
             closeBtn.addEventListener('click', closeMenu);
         }
 
-        // Close menu when clicking on a link
-        const menuLinks = mobileMenu.querySelectorAll('.mobile-menu-link');
+        // Shop dropdown toggle
+        const shopLink = document.getElementById('mobile-shop-link');
+        const shopDropdown = document.getElementById('mobile-shop-dropdown');
+        const shopWrapper = shopLink?.closest('.mobile-menu-link-wrapper');
+
+        if (shopLink && shopDropdown && shopWrapper) {
+            shopLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                shopWrapper.classList.toggle('active');
+            });
+
+            // Close menu when clicking on dropdown links
+            const dropdownLinks = shopDropdown.querySelectorAll('.mobile-menu-dropdown-link');
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    closeMenu();
+                });
+            });
+        }
+
+        // Close menu when clicking on other links (not Shop)
+        const menuLinks = mobileMenu.querySelectorAll('.mobile-menu-link:not(.mobile-menu-shop-link)');
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 closeMenu();
