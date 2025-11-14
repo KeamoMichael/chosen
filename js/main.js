@@ -97,6 +97,40 @@ const products = [
 
 let currentCategory = 'all';
 
+// Mobile Menu Toggle
+function initMobileMenu() {
+    const menuToggle = document.getElementById('nav-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const body = document.body;
+
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking on a link
+        const menuLinks = mobileMenu.querySelectorAll('.mobile-menu-link');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                body.style.overflow = '';
+            }
+        });
+    }
+}
+
 // Initialize page
 function init() {
     // Check URL for category parameter
@@ -113,6 +147,7 @@ function init() {
 
     renderProducts();
     setupFilters();
+    initMobileMenu();
 }
 
 // Comprehensive clothing type library
