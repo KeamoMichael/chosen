@@ -1279,7 +1279,8 @@ body {
 
     .products-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        row-gap: 50px;
+        column-gap: 20px;
     }
 
     .footer {
