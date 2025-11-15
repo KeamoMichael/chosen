@@ -2143,8 +2143,45 @@ body {
 
 /* Brand Page */
 .brand-page {
-    padding: 100px 0 80px;
+    padding: 0;
     min-height: calc(100vh - 350px);
+}
+
+/* Brand Hero Section */
+.brand-hero {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 80px;
+    overflow: hidden;
+}
+
+.brand-hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.brand-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brand-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+    max-width: 800px;
+    padding: 0 40px;
 }
 
 .brand-page-title {
@@ -2152,14 +2189,79 @@ body {
     font-weight: 600;
     letter-spacing: -1px;
     line-height: 1;
-    color: #000;
-    margin-bottom: 80px;
+    color: #fff;
+    margin-bottom: 30px;
     font-family: 'ClashGrotesk', sans-serif;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.brand-hero-description {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #fff;
+    font-family: 'ClashGrotesk', sans-serif;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .brand-section {
     margin-bottom: 80px;
+}
+
+.brand-section-with-image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto 80px;
+    padding: 0 40px;
+}
+
+.brand-section-reverse {
+    grid-template-columns: 1fr 1fr;
+}
+
+.brand-section-reverse .brand-section-image {
+    order: -1;
+}
+
+.brand-section-content {
+    max-width: 600px;
+}
+
+.brand-section-image {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    overflow: hidden;
+}
+
+.brand-section-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brand-section-centered {
+    text-align: center;
     max-width: 800px;
+    margin: 0 auto 80px;
+    padding: 0 40px;
+}
+
+.brand-section-full-image {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 80px;
+    padding: 0 40px;
+    overflow: hidden;
+}
+
+.brand-section-full-image img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .brand-section-label {
@@ -2223,8 +2325,45 @@ body {
 
 /* Journal Page */
 .journal-page {
-    padding: 100px 0 80px;
+    padding: 0;
     min-height: calc(100vh - 350px);
+}
+
+/* Journal Hero Section */
+.journal-hero {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 80px;
+    overflow: hidden;
+}
+
+.journal-hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.journal-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.journal-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+    max-width: 800px;
+    padding: 0 40px;
 }
 
 .journal-page-title {
@@ -2232,25 +2371,67 @@ body {
     font-weight: 600;
     letter-spacing: -1px;
     line-height: 1;
-    color: #000;
-    margin-bottom: 80px;
+    color: #fff;
+    margin-bottom: 30px;
     font-family: 'ClashGrotesk', sans-serif;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.journal-hero-description {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #fff;
+    font-family: 'ClashGrotesk', sans-serif;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .journal-articles {
     display: flex;
     flex-direction: column;
-    gap: 60px;
-    max-width: 800px;
+    gap: 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
 }
 
 .journal-article {
-    padding-bottom: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding-bottom: 100px;
     border-bottom: 1px solid #e5e5e5;
 }
 
 .journal-article:last-child {
     border-bottom: none;
+    padding-bottom: 0;
+}
+
+.journal-article-reverse {
+    grid-template-columns: 1fr 1fr;
+}
+
+.journal-article-reverse .journal-article-image {
+    order: -1;
+}
+
+.journal-article-image {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    overflow: hidden;
+}
+
+.journal-article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.journal-article-content {
+    max-width: 500px;
 }
 
 .journal-article-title {
@@ -2310,8 +2491,45 @@ body {
 
 /* Contact Page */
 .contact-page {
-    padding: 100px 0 80px;
+    padding: 0;
     min-height: calc(100vh - 350px);
+}
+
+/* Contact Hero Section */
+.contact-hero {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 80px;
+    overflow: hidden;
+}
+
+.contact-hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.contact-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contact-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+    max-width: 800px;
+    padding: 0 40px;
 }
 
 .contact-page-title {
@@ -2319,16 +2537,55 @@ body {
     font-weight: 600;
     letter-spacing: -1px;
     line-height: 1;
-    color: #000;
-    margin-bottom: 80px;
+    color: #fff;
+    margin-bottom: 30px;
     font-family: 'ClashGrotesk', sans-serif;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.contact-hero-description {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #fff;
+    font-family: 'ClashGrotesk', sans-serif;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
-    max-width: 1200px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+}
+
+.contact-image {
+    width: 100%;
+    height: 300px;
+    margin-top: 40px;
+    overflow: hidden;
+}
+
+.contact-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contact-image-section {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 80px;
+    padding: 0 40px;
+    overflow: hidden;
+}
+
+.contact-image-section img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .contact-section-label {
@@ -2453,10 +2710,48 @@ body {
 
 /* Responsive Styles for Brand, Journal, Contact Pages */
 @media (max-width: 768px) {
+    .brand-hero,
+    .journal-hero,
+    .contact-hero {
+        height: 50vh;
+        min-height: 400px;
+        margin-bottom: 50px;
+    }
+
     .brand-page-title,
     .journal-page-title,
     .contact-page-title {
         font-size: 48px;
+        margin-bottom: 20px;
+    }
+
+    .brand-hero-description,
+    .journal-hero-description,
+    .contact-hero-description {
+        font-size: 16px;
+    }
+
+    .brand-section-with-image {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 20px;
+    }
+
+    .brand-section-reverse .brand-section-image {
+        order: 0;
+    }
+
+    .brand-section-image {
+        min-height: 300px;
+    }
+
+    .brand-section-centered {
+        padding: 0 20px;
+        margin-bottom: 50px;
+    }
+
+    .brand-section-full-image {
+        padding: 0 20px;
         margin-bottom: 50px;
     }
 
@@ -2478,11 +2773,22 @@ body {
     }
 
     .journal-articles {
-        gap: 40px;
+        gap: 60px;
+        padding: 0 20px 50px;
     }
 
     .journal-article {
-        padding-bottom: 40px;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-bottom: 60px;
+    }
+
+    .journal-article-reverse .journal-article-image {
+        order: 0;
+    }
+
+    .journal-article-image {
+        min-height: 300px;
     }
 
     .journal-article-title {
@@ -2492,6 +2798,17 @@ body {
     .contact-content {
         grid-template-columns: 1fr;
         gap: 50px;
+        padding: 0 20px 50px;
+    }
+
+    .contact-image {
+        height: 250px;
+        margin-top: 30px;
+    }
+
+    .contact-image-section {
+        padding: 0 20px;
+        margin-bottom: 50px;
     }
 
     .contact-form-wrapper {
