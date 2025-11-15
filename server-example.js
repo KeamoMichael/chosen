@@ -22,11 +22,21 @@ app.use(express.static('.')); // Serve static files (HTML, CSS, JS)
 // Initialize payment endpoint
 app.post('/api/initialize-payment', async (req, res) => {
     try {
+        // Check if Paystack secret key is configured
+        if (!process.env.PAYSTACK_SECRET_KEY || process.env.PAYSTACK_SECRET_KEY === 'sk_test_YOUR_SECRET_KEY_HERE') {
+            console.error('PAYSTACK_SECRET_KEY is not set or is using placeholder value');
+            return res.status(500).json({ 
+                status: false,
+                error: 'Server configuration error: PAYSTACK_SECRET_KEY is not set. Please configure it in Render environment variables.' 
+            });
+        }
+
         const { email, amount, currency, reference, metadata, callback_url } = req.body;
         
         // Validate input
         if (!email || !amount || !reference) {
             return res.status(400).json({ 
+                status: false,
                 error: 'Email, amount, and reference are required' 
             });
         }
@@ -38,7 +48,7 @@ app.post('/api/initialize-payment', async (req, res) => {
             currency: currency || 'USD', // USD, NGN, ZAR, etc.
             reference: reference,
             metadata: metadata || {},
-            callback_url: callback_url || `${req.headers.origin}/success.html`,
+            callback_url: callback_url || `${req.headers.origin || req.headers.referer?.split('/').slice(0, 3).join('/')}/success.html`,
         });
         
         if (response.status && response.data) {
@@ -56,6 +66,7 @@ app.post('/api/initialize-payment', async (req, res) => {
         }
     } catch (error) {
         console.error('Error initializing payment:', error);
+        // Ensure we always send a JSON response
         res.status(500).json({ 
             status: false,
             error: error.message || 'An error occurred while initializing the payment' 
@@ -66,10 +77,22 @@ app.post('/api/initialize-payment', async (req, res) => {
 // Verify payment endpoint (called after payment)
 app.get('/api/verify-payment/:reference', async (req, res) => {
     try {
+        // Check if Paystack secret key is configured
+        if (!process.env.PAYSTACK_SECRET_KEY || process.env.PAYSTACK_SECRET_KEY === 'sk_test_YOUR_SECRET_KEY_HERE') {
+            console.error('PAYSTACK_SECRET_KEY is not set or is using placeholder value');
+            return res.status(500).json({ 
+                status: false,
+                error: 'Server configuration error: PAYSTACK_SECRET_KEY is not set. Please configure it in Render environment variables.' 
+            });
+        }
+
         const { reference } = req.params;
         
         if (!reference) {
-            return res.status(400).json({ error: 'Reference is required' });
+            return res.status(400).json({ 
+                status: false,
+                error: 'Reference is required' 
+            });
         }
         
         // Verify payment with Paystack
@@ -141,5 +164,13 @@ app.get('/api/health', (req, res) => {
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
-    console.log(`Make sure to set PAYSTACK_SECRET_KEY in your .env file`);
+    
+    // Check if Paystack secret key is configured
+    if (!process.env.PAYSTACK_SECRET_KEY || process.env.PAYSTACK_SECRET_KEY === 'sk_test_YOUR_SECRET_KEY_HERE') {
+        console.warn('⚠️  WARNING: PAYSTACK_SECRET_KEY is not set or is using placeholder value');
+        console.warn('⚠️  Payment endpoints will not work until PAYSTACK_SECRET_KEY is configured');
+        console.warn('⚠️  Set PAYSTACK_SECRET_KEY in Render environment variables');
+    } else {
+        console.log('✅ PAYSTACK_SECRET_KEY is configured');
+    }
 });

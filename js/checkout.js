@@ -165,32 +165,72 @@ function handleCheckout(e) {
         },
         body: JSON.stringify(orderData)
     })
-    .then(response => {
+    .then(async response => {
+        // Check if response is ok
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            // Try to get error message from response
+            let errorMessage = 'Network response was not ok';
+            try {
+                const errorData = await response.json();
+                errorMessage = errorData.error || errorData.message || errorMessage;
+            } catch (e) {
+                // If response is not JSON, use status text
+                errorMessage = response.statusText || errorMessage;
+            }
+            throw new Error(errorMessage);
         }
-        return response.json();
-    })
-    .then(data => {
+        
+        // Get response text first to check if it's empty
+        const responseText = await response.text();
+        if (!responseText || responseText.trim() === '') {
+            throw new Error('Empty response from server. Please check server logs.');
+        }
+        
+        // Parse JSON
+        let data;
+        try {
+            data = JSON.parse(responseText);
+        } catch (e) {
+            console.error('Response text:', responseText);
+            throw new Error('Invalid JSON response from server: ' + e.message);
+        }
+        
+        // Check for error in response
+        if (data.status === false || data.error) {
+            throw new Error(data.error || data.message || 'Payment initialization failed');
+        }
+        
+        // Extract authorization URL
+        let authorizationUrl = null;
         if (data.authorization_url) {
-            // Redirect to Paystack payment page
-            window.location.href = data.authorization_url;
+            authorizationUrl = data.authorization_url;
         } else if (data.data && data.data.authorization_url) {
-            // Paystack API response format
-            window.location.href = data.data.authorization_url;
-        } else {
-            throw new Error('No authorization URL received');
+            authorizationUrl = data.data.authorization_url;
         }
+        
+        if (!authorizationUrl) {
+            console.error('Response data:', data);
+            throw new Error('No authorization URL received from server. Response: ' + JSON.stringify(data));
+        }
+        
+        // Redirect to Paystack payment page
+        window.location.href = authorizationUrl;
     })
     .catch(error => {
         console.error('Error:', error);
         
         // Show user-friendly error message
+        let errorMessage = error.message || 'An unknown error occurred';
+        
         if (error.message.includes('Network') || error.message.includes('Failed to fetch')) {
-            alert('Unable to connect to payment server. Please ensure the backend server is running.\n\nSee README.md for setup instructions.');
-        } else {
-            alert('An error occurred during checkout. Please try again.\n\nError: ' + error.message);
+            errorMessage = 'Unable to connect to payment server. Please check your internet connection and ensure the backend server is running.';
+        } else if (error.message.includes('PAYSTACK_SECRET_KEY')) {
+            errorMessage = 'Server configuration error: Payment keys are not properly configured. Please contact support.';
+        } else if (error.message.includes('Empty response') || error.message.includes('Invalid JSON')) {
+            errorMessage = 'Server error: The payment server returned an invalid response. Please try again or contact support.';
         }
+        
+        alert('An error occurred during checkout. Please try again.\n\nError: ' + errorMessage);
         
         // Re-enable button
         if (submitBtn) {
