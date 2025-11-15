@@ -2491,45 +2491,8 @@ body {
 
 /* Contact Page */
 .contact-page {
-    padding: 0;
+    padding: 100px 0 80px;
     min-height: calc(100vh - 350px);
-}
-
-/* Contact Hero Section */
-.contact-hero {
-    position: relative;
-    width: 100%;
-    height: 70vh;
-    min-height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 80px;
-    overflow: hidden;
-}
-
-.contact-hero-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
-.contact-hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.contact-hero-content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    color: #fff;
-    max-width: 800px;
-    padding: 0 40px;
 }
 
 .contact-page-title {
@@ -2537,19 +2500,9 @@ body {
     font-weight: 600;
     letter-spacing: -1px;
     line-height: 1;
-    color: #fff;
-    margin-bottom: 30px;
+    color: #000;
+    margin-bottom: 80px;
     font-family: 'ClashGrotesk', sans-serif;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.contact-hero-description {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: #fff;
-    font-family: 'ClashGrotesk', sans-serif;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .contact-content {
@@ -2558,13 +2511,23 @@ body {
     gap: 80px;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 40px 80px;
+    align-items: start;
+}
+
+.contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.contact-right {
+    width: 100%;
 }
 
 .contact-image {
     width: 100%;
-    height: 300px;
-    margin-top: 40px;
+    height: 100%;
+    min-height: 600px;
     overflow: hidden;
 }
 
@@ -2572,20 +2535,6 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.contact-image-section {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto 80px;
-    padding: 0 40px;
-    overflow: hidden;
-}
-
-.contact-image-section img {
-    width: 100%;
-    height: auto;
-    display: block;
 }
 
 .contact-section-label {
@@ -2608,18 +2557,14 @@ body {
 }
 
 .contact-details {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 20px;
 }
 
 .contact-detail-item {
-    padding-bottom: 30px;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.contact-detail-item:last-child {
-    border-bottom: none;
+    padding: 0;
 }
 
 .contact-detail-label {
@@ -2667,12 +2612,13 @@ body {
 
 .contact-form-input,
 .contact-form-textarea {
-    padding: 12px 16px;
-    border: 1px solid #e5e5e5;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid #e5e5e5;
     font-size: 14px;
     font-family: 'ClashGrotesk', sans-serif;
     transition: border-color 0.3s ease;
-    background: #fff;
+    background: transparent;
     color: #000;
     width: 100%;
     box-sizing: border-box;
@@ -2681,7 +2627,12 @@ body {
 .contact-form-input:focus,
 .contact-form-textarea:focus {
     outline: none;
-    border-color: #000;
+    border-bottom-color: #000;
+}
+
+.contact-form-input::placeholder,
+.contact-form-textarea::placeholder {
+    color: #999;
 }
 
 .contact-form-textarea {
@@ -2690,7 +2641,7 @@ body {
 }
 
 .contact-form-submit {
-    padding: 16px 30px;
+    padding: 16px 40px;
     background: #000;
     color: #fff;
     border: none;
@@ -2702,6 +2653,7 @@ body {
     transition: background 0.3s ease;
     font-family: 'ClashGrotesk', sans-serif;
     align-self: flex-start;
+    margin-top: 10px;
 }
 
 .contact-form-submit:hover {
@@ -2711,8 +2663,7 @@ body {
 /* Responsive Styles for Brand, Journal, Contact Pages */
 @media (max-width: 768px) {
     .brand-hero,
-    .journal-hero,
-    .contact-hero {
+    .journal-hero {
         height: 50vh;
         min-height: 400px;
         margin-bottom: 50px;
@@ -2722,12 +2673,11 @@ body {
     .journal-page-title,
     .contact-page-title {
         font-size: 48px;
-        margin-bottom: 20px;
+        margin-bottom: 50px;
     }
 
     .brand-hero-description,
-    .journal-hero-description,
-    .contact-hero-description {
+    .journal-hero-description {
         font-size: 16px;
     }
 
@@ -2798,17 +2748,19 @@ body {
     .contact-content {
         grid-template-columns: 1fr;
         gap: 50px;
-        padding: 0 20px 50px;
+    }
+
+    .contact-left {
+        gap: 40px;
     }
 
     .contact-image {
-        height: 250px;
-        margin-top: 30px;
+        min-height: 400px;
     }
 
-    .contact-image-section {
-        padding: 0 20px;
-        margin-bottom: 50px;
+    .contact-details {
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
 
     .contact-form-wrapper {

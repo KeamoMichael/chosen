@@ -140,75 +140,45 @@
 
     <!-- Contact Page Content -->
     <main class="contact-page">
-        <!-- Hero Section -->
-        <section class="contact-hero">
-            <div class="contact-hero-image">
-                <img src="IMAGES03/pexels-jack-winbow-460463-1457983.jpg" alt="Contact Hero">
-            </div>
-            <div class="contact-hero-content">
-                <h1 class="contact-page-title">Contact</h1>
-                <p class="contact-hero-description">
-                    We'd love to hear from you. Get in touch and let's start a conversation.
-                </p>
-            </div>
-        </section>
-
         <div class="container">
+            <h1 class="contact-page-title">Contact</h1>
+            
             <div class="contact-content">
-                <div class="contact-info">
-                    <h3 class="contact-section-label">(Get in Touch)</h3>
-                    <p class="contact-text">
-                        We'd love to hear from you. Whether you have a question about our products, need support, or just want to say hello, we're here to help.
-                    </p>
+                <div class="contact-left">
+                    <form class="contact-form" id="contact-form">
+                        <div class="contact-form-group">
+                            <label for="contact-name" class="contact-form-label">NAME</label>
+                            <input type="text" id="contact-name" class="contact-form-input" placeholder="Your Name" required>
+                        </div>
+                        <div class="contact-form-group">
+                            <label for="contact-email" class="contact-form-label">EMAIL</label>
+                            <input type="email" id="contact-email" class="contact-form-input" placeholder="Your Email" required>
+                        </div>
+                        <div class="contact-form-group">
+                            <label for="contact-message" class="contact-form-label">MESSAGE</label>
+                            <textarea id="contact-message" class="contact-form-textarea" placeholder="Your Message" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="contact-form-submit">JOIN</button>
+                    </form>
                     
                     <div class="contact-details">
                         <div class="contact-detail-item">
-                            <h4 class="contact-detail-label">Email</h4>
-                            <p class="contact-detail-value">hello@chosen.com</p>
+                            <h4 class="contact-detail-label">(LOCATION)</h4>
+                            <p class="contact-detail-value">1456 Broadway<br>New York, NY 10018</p>
                         </div>
                         <div class="contact-detail-item">
-                            <h4 class="contact-detail-label">Phone</h4>
-                            <p class="contact-detail-value">+1 (555) 123-4567</p>
+                            <h4 class="contact-detail-label">(PHONE)</h4>
+                            <p class="contact-detail-value">949.245.8870</p>
                         </div>
-                        <div class="contact-detail-item">
-                            <h4 class="contact-detail-label">Address</h4>
-                            <p class="contact-detail-value">123 Fashion Street<br>New York, NY 10001<br>United States</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-image">
-                        <img src="IMAGES03/pexels-brianasarejr-13221797.jpg" alt="Contact">
                     </div>
                 </div>
 
-                <div class="contact-form-wrapper">
-                    <h3 class="contact-section-label">(Send a Message)</h3>
-                    <form class="contact-form" id="contact-form">
-                        <div class="contact-form-group">
-                            <label for="contact-name" class="contact-form-label">Name</label>
-                            <input type="text" id="contact-name" class="contact-form-input" required>
-                        </div>
-                        <div class="contact-form-group">
-                            <label for="contact-email" class="contact-form-label">Email</label>
-                            <input type="email" id="contact-email" class="contact-form-input" required>
-                        </div>
-                        <div class="contact-form-group">
-                            <label for="contact-subject" class="contact-form-label">Subject</label>
-                            <input type="text" id="contact-subject" class="contact-form-input" required>
-                        </div>
-                        <div class="contact-form-group">
-                            <label for="contact-message" class="contact-form-label">Message</label>
-                            <textarea id="contact-message" class="contact-form-textarea" rows="6" required></textarea>
-                        </div>
-                        <button type="submit" class="contact-form-submit">Send Message</button>
-                    </form>
+                <div class="contact-right">
+                    <div class="contact-image">
+                        <img src="IMAGES03/pexels-camila-aguiar-988616175-20889991.jpg" alt="Contact">
+                    </div>
                 </div>
             </div>
-
-            <!-- Additional Image Section -->
-            <section class="contact-image-section">
-                <img src="IMAGES03/pexels-camila-aguiar-988616175-20889991.jpg" alt="Contact Us">
-            </section>
         </div>
     </main>
 
